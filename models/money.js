@@ -8,22 +8,21 @@ const recordSchema = new Schema({
   },
   date: {
     type: Date,
+    required: true,
     default: Date.now
   },
   amount: {
     type: Number,
     required: true
-  }
-})
-
-const categorySchema = new Schema({
+  },
   category: {
     type: String,
-    required: true
-  }
+  },
+  categoryIcon: {
+    type: String,
+  },
 })
 
 const Record = mongoose.model('Record', recordSchema)
-const Category = mongoose.model('Category', categorySchema)
 
-module.exports = { Record, Category }
+module.exports = Record
