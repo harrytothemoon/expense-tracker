@@ -1,18 +1,47 @@
 <ul class="list-group">
+  <li class="list-group-item mx-auto border-left-0 border-right-0 border-top-0 border-bottom-0" style="width: 600px;">
+    <div class="d-flex justify-content-center align-items-center">
+      <h4 class="mr-4">Total</h4>
+      <h1 class="display-3">$ 12345</h1>
+    </div>
+    <div class="row d-flex justify-content-between">
+      <form class="form my-2 my-lg-0">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Create</button>
+      </form>
+      <form action="/" method="GET">
+        <select name="category" class="form-control btn-outline-secondary" id='inputType' onchange="this.form.submit()"
+          style="cursor: pointer; text-align: center; text-align-last: center;color: rgb(255, 255, 255);">
+          <option value="name" disabled selected>Category</option>
+          <option value="home">Home</option>
+          <option value="transportation">Transportation</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="food">Food</option>
+          <option value="other">Other</option>
+        </select>
+      </form>
+    </div>
+  </li>
   {{#each record }}
-  <li class="list-group-item">
-    <div class="row">
-      <div class="col-auto mr-auto">
-        <i class="{{this.categoryIcon}} fa-3x"></i>
-        <h4 style="display: inline; vertical-align: middle;">
-          {{ this.name }}
-        </h4><br>
+  <li class=" list-group-item mx-auto border-0" style="width: 600px;margin-bottom:-15px">
+    <div class="row" style="border-style:outset;border-color:rgb(238, 235, 209)">
+      <div class="col-9 ml-1 mr-4 row d-flex justify-content-between align-items-center">
+        <div class="col-3"><i class="{{this.categoryIcon}} fa-4x"></i>
+        </div>
+        <div class="col-8 d-flex justify-content-between align-items-center ml-2">
+          <h3>
+            {{ this.name }}
+          </h3>
+          <h1>
+            $ {{ this.amount }}
+          </h1>
+        </div>
+        <br>
         <span>{{this.date}}</span>
       </div>
-      <div class="col-auto">
-        <a class="btn btn-success" href="./todos/{{ this._id }}/edit">edit</a>
-        <form action="./todos/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-          <button class="btn btn-danger" type="submit">delete</button>
+      <div class="col-2" class="d-flex justify-content-center">
+        <a class="btn btn-success mb-2" href="./todos/{{ this._id }}/edit" style="width: 6vw;">edit</a>
+        <form action="./todos/{{ this._id }}?_method=DELETE" method="POST">
+          <button class="btn btn-danger text-center" type="submit" style="width: 6vw;">delete</button>
         </form>
       </div>
     </div>
