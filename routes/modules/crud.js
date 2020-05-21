@@ -38,5 +38,14 @@ router.put('/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// Delete Function
+router.delete('/:id/delete', (req, res) => {
+  const id = req.params.id
+  return Money.findById(id)
+    .then(record => record.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 // 匯出路由器
 module.exports = router
