@@ -12,16 +12,18 @@
     <div class="form-group row mb-4">
       <label for="exampleSelect1" class="col-2 col-form-label">Category*</label>
       <div class="col-10">
-        <select class="form-control" id="exampleSelect1" style="cursor: pointer" name="categoryIcon" required>
+        <select class="form-control" id="exampleSelect1" style="cursor: pointer" name="Category" required>
           <option value="" disabled selected>Category</option>
-          <option value="fas fa-home" {{#if (eq record.categoryIcon 'fas fa-home')}} selected {{/if}}>Home</option>
-          <option value="fas fa-shuttle-van" {{#if (eq record.categoryIcon 'fas fa-shuttle-van')}} selected {{/if}}>
+          <option value="home/fas fa-home" {{#if (eq record.categoryIcon 'fas fa-home')}} selected {{/if}}>Home</option>
+          <option value="transportation/fas fa-shuttle-van" {{#if (eq record.categoryIcon 'fas fa-shuttle-van')}}
+            selected {{/if}}>
             Transportation</option>
-          <option value="fas fa-grin-beam" {{#if (eq record.categoryIcon 'fas fa-grin-beam')}} selected {{/if}}>
+          <option value="entertainment/fas fa-grin-beam" {{#if (eq record.categoryIcon 'fas fa-grin-beam')}} selected
+            {{/if}}>
             Entertainment</option>
-          <option value="fas fa-utensils" {{#if (eq record.categoryIcon 'fas fa-utensils')}} selected {{/if}}>Food
+          <option value="food/fas fa-utensils" {{#if (eq record.categoryIcon 'fas fa-utensils')}} selected {{/if}}>Food
           </option>
-          <option value="fas fa-pen" {{#if (eq record.categoryIcon 'fas fa-pen')}} selected {{/if}}>Other</option>
+          <option value="other/fas fa-pen" {{#if (eq record.categoryIcon 'fas fa-pen')}} selected {{/if}}>Other</option>
         </select>
       </div>
     </div>

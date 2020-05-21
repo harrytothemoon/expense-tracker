@@ -8,9 +8,10 @@ router.get('/create', (req, res) => {
   return res.render('create')
 })
 router.post('/create', (req, res) => {
-  const { name, categoryIcon, date, amount } = req.body
+  const { name, Category, date, amount } = req.body
+  let [category, categoryIcon] = Category.split('/')
   console.log(req.body)
-  return Money.create({ name, categoryIcon, date, amount })
+  return Money.create({ name, category, categoryIcon, date, amount })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -25,10 +26,12 @@ router.get('/:id/edit', (req, res) => {
 })
 router.put('/:id/edit', (req, res) => {
   const id = req.params.id
-  const { name, categoryIcon, date, amount } = req.body
+  const { name, Category, date, amount } = req.body
+  let [category, categoryIcon] = Category.split('/')
   return Money.findById(id)
     .then(record => {
       record.name = name
+      record.category = category
       record.categoryIcon = categoryIcon
       record.date = date
       record.amount = amount
