@@ -6,16 +6,36 @@ const Money = require('../../models/money')
 // Filter Function
 router.get('/', (req, res) => {
   const filter = req.query.filter
+  const amountFilter = Money.aggregate([
+    { $match: { category: filter } }, {
+      $group: {
+        _id: null,
+        amount: { $sum: "$amount" },
+      }
+    }
+  ]).exec()
+  const recordFilter = Money.aggregate([
+    {
+      $project: {
+        name: 1,
+        category: 1,
+        amount: 1,
+        date: 1,
+        categoryIcon: 1,
+      }
+    },
+    { $match: { category: filter } }
+  ]).exec()
   if (filter) {
-    Money.find({ category: { $regex: filter } })
-      .lean()
-      .then(record => res.render('index', { record, filter }))
-      .catch(error => console.log(error))
+    Promise.all([amountFilter, recordFilter])
+      .then(([amountFilter, record]) => {
+        const totalamount = amountFilter[0]
+        res.render('index', { totalamount, record, filter })
+        console.log(total, recordFilter)
+      })
   } else {
-    Money.find()
-      .lean()
-      .then(record => res.render('index', { record, filter }))
-      .catch(error => console.log(error))
+    Promise.all([amountFilter, recordFilter])
+      .then(() => res.redirect('/'))
   }
 })
 

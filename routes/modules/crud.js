@@ -10,7 +10,6 @@ router.get('/create', (req, res) => {
 router.post('/create', (req, res) => {
   const { name, Category, date, amount } = req.body
   let [category, categoryIcon] = Category.split('/')
-  console.log(req.body)
   return Money.create({ name, category, categoryIcon, date, amount })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
