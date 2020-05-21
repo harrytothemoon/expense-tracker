@@ -1,0 +1,53 @@
+<div class="container mx-auto" style="width: 500px;">
+  <h1 class="text-center display-3 mt-4">EDIT</h1>
+  <h5 class="mb-4" style="color: lightcoral;">* Required</h5>
+  <form action='/record/{{record._id}}/edit?_method=PUT' method="POST">
+    <div class="form-group row mb-4">
+      <label for="example-text-input" class="col-2 col-form-label">Name*</label>
+      <div class="col-10">
+        <input class="form-control" type="text" placeholder="Name" id="example-text-input" value="{{record.name}}"
+          name="name" required>
+      </div>
+    </div>
+    <div class="form-group row mb-4">
+      <label for="exampleSelect1" class="col-2 col-form-label">Category*</label>
+      <div class="col-10">
+        <select class="form-control" id="exampleSelect1" style="cursor: pointer" name="categoryIcon" required>
+          <option value="" disabled selected>Category</option>
+          <option value="fas fa-home" {{#if (eq record.categoryIcon 'fas fa-home')}} selected {{/if}}>Home</option>
+          <option value="fas fa-shuttle-van" {{#if (eq record.categoryIcon 'fas fa-shuttle-van')}} selected {{/if}}>
+            Transportation</option>
+          <option value="fas fa-grin-beam" {{#if (eq record.categoryIcon 'fas fa-grin-beam')}} selected {{/if}}>
+            Entertainment</option>
+          <option value="fas fa-utensils" {{#if (eq record.categoryIcon 'fas fa-utensils')}} selected {{/if}}>Food
+          </option>
+          <option value="fas fa-pen" {{#if (eq record.categoryIcon 'fas fa-pen')}} selected {{/if}}>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group input-group row mb-4">
+      <label for="example-date-input" class="col-2 col-form-label mr-4">Date*</label>
+      <div class="input-group-prepend">
+        <span class="input-group-text" style="width: 40px;"><i class=" far fa-calendar-alt"></i></span>
+      </div>
+      <input class="form-control col-5" type="date" id="example-date-input" style="cursor: pointer"
+        value="{{record.date}}" name='date' required>
+    </div>
+    <div class="form-group input-group row mb-4">
+      <label for="example-number-input" class="col-2 col-form-label mr-4">Amount*</label>
+      <div class="input-group-prepend">
+        <span class="input-group-text" style="width: 40px"><i class="fas fa-dollar-sign"></i></span>
+      </div>
+      <input class=" form-control col-5" type="number" placeholder="100" id="example-number-input"
+        value="{{record.amount}}" name="amount" required>
+    </div>
+    <div class="text-center mt-4 row">
+      <div class="col-5"></div>
+      <div class="col-3"><button type="submit" class="btn btn-primary">Submit</button></div>
+      <div class="col-2"></div>
+      <div class="col-2">
+        <button type="button" onclick="history.back()" class="btn btn-outline-secondary">Back</button>
+      </div>
+    </div>
+  </form>
+</div>

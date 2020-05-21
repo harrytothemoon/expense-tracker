@@ -9,7 +9,14 @@ require('./config/mongoose')
 const app = express()
 const PORT = process.env.PORT || 3000
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+const helper = exphbs.create({
+  defaultlayout: 'main',
+  helpers: {
+    eq: function (v1, v2) { return (v1 === v2) }
+  }
+})
+
+app.engine('handlebars', helper.engine)
 app.set('view engine', 'handlebars')
 
 app.use(bodyParser.urlencoded({ extended: true }))

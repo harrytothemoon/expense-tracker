@@ -15,5 +15,28 @@ router.post('/create', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// Edit Function
+router.get('/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Money.findById(id)
+    .lean()
+    .then(record => res.render('edit', { record }))
+    .catch(error => console.log(error))
+})
+router.put('/:id/edit', (req, res) => {
+  const id = req.params.id
+  const { name, categoryIcon, date, amount } = req.body
+  return Money.findById(id)
+    .then(record => {
+      record.name = name
+      record.categoryIcon = categoryIcon
+      record.date = date
+      record.amount = amount
+      return record.save()
+    })
+    .then(() => res.redirect("/"))
+    .catch(error => console.log(error))
+})
+
 // 匯出路由器
 module.exports = router
