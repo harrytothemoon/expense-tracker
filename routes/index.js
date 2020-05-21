@@ -4,9 +4,11 @@ const router = express.Router()
 // 準備引入路由模組
 const home = require('./modules/home')
 const crud = require('./modules/crud')
+const filter = require('./modules/filter')
 
 router.use('/', home)
 router.use('/record', crud)
+router.use('/filter', filter)
 
 // 匯出路由器
 module.exports = router

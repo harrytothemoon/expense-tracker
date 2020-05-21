@@ -9,16 +9,16 @@
         <form class="form my-2 my-lg-0" action="/record/create" method="GET">
           <button class="btn btn-primary my-2 my-sm-0" type="submit">Create</button>
         </form>
-        <form action="/" method="GET">
-          <select name="category" class="form-control btn-outline-secondary" id='inputType'
-            onchange="this.form.submit()"
+        <form action="/filter" method="GET">
+          <select name="filter" class="form-control btn-outline-secondary" id='inputType' onchange="this.form.submit()"
             style="cursor: pointer; text-align: center; text-align-last: center;color: rgb(255, 255, 255);">
-            <option value="name" disabled selected>Category</option>
-            <option value="home">Home</option>
-            <option value="transportation">Transportation</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="food">Food</option>
-            <option value="other">Other</option>
+            <option value="" disabled selected>Category</option>
+            <option value="" {{#if (eq filter '')}} selected {{/if}}>All</option>
+            <option value="home" {{#if (eq filter 'home')}} selected {{/if}}>Home</option>
+            <option value="transportation" {{#if (eq filter 'transportation')}} selected {{/if}}>Transportation</option>
+            <option value="entertainment" {{#if (eq filter 'entertainment')}} selected {{/if}}>Entertainment</option>
+            <option value="food" {{#if (eq filter 'food')}} selected {{/if}}>Food</option>
+            <option value="other" {{#if (eq filter 'other')}} selected {{/if}}>Other</option>
           </select>
         </form>
       </div>
