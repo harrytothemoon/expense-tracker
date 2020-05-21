@@ -2,6 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const Money = require('../../models/money')
+const mongoose = require('mongoose')
 
 // Create function
 router.get('/create', (req, res) => {
@@ -18,10 +19,25 @@ router.post('/create', (req, res) => {
 // Edit Function
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
-  return Money.findById(id)
-    .lean()
-    .then(record => res.render('edit', { record }))
-    .catch(error => console.log(error))
+  const ObjectId = mongoose.Types.ObjectId
+  const record = Money.aggregate([
+    { $match: { _id: ObjectId(id) } },
+    {
+      $project: {
+        _id: 1,
+        name: 1,
+        category: 1,
+        amount: 1,
+        date: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
+        categoryIcon: 1,
+      }
+    }
+  ]).exec()
+  Promise.all([record])
+    .then((record) => {
+      const [recordEdit] = record[0]
+      res.render('edit', { recordEdit })
+    })
 })
 router.put('/:id/edit', (req, res) => {
   const id = req.params.id

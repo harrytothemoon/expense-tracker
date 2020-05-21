@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
         name: 1,
         category: 1,
         amount: 1,
-        date: 1,
+        date: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
         categoryIcon: 1,
       }
     },
@@ -31,7 +31,6 @@ router.get('/', (req, res) => {
       .then(([amountFilter, record]) => {
         const totalamount = amountFilter[0]
         res.render('index', { totalamount, record, filter })
-        console.log(total, recordFilter)
       })
   } else {
     Promise.all([amountFilter, recordFilter])
