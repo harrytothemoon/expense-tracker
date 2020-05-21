@@ -1,0 +1,43 @@
+<div class="container mx-auto" style="width: 500px;">
+  <h1 class="text-center display-3 mt-4">Create</h1>
+  <h5 class="mb-4" style="color: lightcoral;">* Required</h5>
+  <form action="/record/create" method="POST">
+    <div class="form-group row mb-4">
+      <label for="example-text-input" class="col-2 col-form-label">Name*</label>
+      <div class="col-10">
+        <input class="form-control" type="text" placeholder="Name" id="example-text-input" name="name" required>
+      </div>
+    </div>
+    <div class="form-group row mb-4">
+      <label for="exampleSelect1" class="col-2 col-form-label">Category*</label>
+      <div class="col-10">
+        <select class="form-control" id="exampleSelect1" style="cursor: pointer" name="categoryIcon" required>
+          <option value="" disabled selected>Category</option>
+          <option value="fas fa-home">Home</option>
+          <option value="fas fa-shuttle-van">Transportation</option>
+          <option value="fas fa-grin-beam">Entertainment</option>
+          <option value="fas fa-utensils">Food</option>
+          <option value="fas fa-pen">Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group input-group row mb-4">
+      <label for="example-date-input" class="col-2 col-form-label mr-4">Date*</label>
+      <div class="input-group-prepend">
+        <span class="input-group-text" style="width: 40px;"><i class=" far fa-calendar-alt"></i></span>
+      </div>
+      <input class="form-control col-5" type="date" id="example-date-input" style="cursor: pointer" name='date'
+        required>
+    </div>
+    <div class="form-group input-group row mb-4">
+      <label for="example-number-input" class="col-2 col-form-label mr-4">Amount*</label>
+      <div class="input-group-prepend">
+        <span class="input-group-text" style="width: 40px"><i class="fas fa-dollar-sign"></i></span>
+      </div>
+      <input class=" form-control col-5" type="number" value="42" id="example-number-input" name="amount" required>
+    </div>
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>

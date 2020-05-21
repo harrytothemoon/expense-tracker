@@ -6,7 +6,7 @@ const home = require('./modules/home')
 const crud = require('./modules/crud')
 
 router.use('/', home)
-router.use('/items', crud)
+router.use('/record', crud)
 
 // 匯出路由器
 module.exports = router
