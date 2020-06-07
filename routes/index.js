@@ -7,10 +7,13 @@ const crud = require('./modules/crud')
 const filter = require('./modules/filter')
 const users = require('./modules/users')
 
-router.use('/', home)
-router.use('/record', crud)
-router.use('/filter', filter)
+const { authenticator } = require('../middleware/auth')
+
+router.use('/record', authenticator, crud)
+router.use('/filter', authenticator, filter)
 router.use('/users', users)
+router.use('/', authenticator, home)
+
 
 // 匯出路由器
 module.exports = router
