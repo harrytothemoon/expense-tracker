@@ -21,6 +21,12 @@ const recordSchema = new Schema({
   categoryIcon: {
     type: String,
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    index: true,
+    required: true
+  },
 })
 
 const Record = mongoose.model('Record', recordSchema)

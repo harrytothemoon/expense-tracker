@@ -9,19 +9,21 @@ router.get('/create', (req, res) => {
   return res.render('create')
 })
 router.post('/create', (req, res) => {
+  const userId = req.user._id
   const { name, Category, date, amount } = req.body
   let [category, categoryIcon] = Category.split('/')
-  return Money.create({ name, category, categoryIcon, date, amount })
+  return Money.create({ name, category, categoryIcon, date, amount, userId })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
 // Edit Function
 router.get('/:id/edit', (req, res) => {
+  const userId = req.user._id
   const id = req.params.id
   const ObjectId = mongoose.Types.ObjectId
   const record = Money.aggregate([
-    { $match: { _id: ObjectId(id) } },
+    { $match: { _id: ObjectId(id), userId: userId } },
     {
       $project: {
         _id: 1,
@@ -40,10 +42,11 @@ router.get('/:id/edit', (req, res) => {
     })
 })
 router.put('/:id/edit', (req, res) => {
-  const id = req.params.id
+  const userId = req.user._id
+  const _id = req.params.id
   const { name, Category, date, amount } = req.body
   let [category, categoryIcon] = Category.split('/')
-  return Money.findById(id)
+  return Money.findOne({ _id, userId })
     .then(record => {
       record.name = name
       record.category = category
@@ -58,8 +61,9 @@ router.put('/:id/edit', (req, res) => {
 
 // Delete Function
 router.delete('/:id/delete', (req, res) => {
-  const id = req.params.id
-  return Money.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Money.findOne({ _id, userId })
     .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
