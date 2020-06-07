@@ -1,0 +1,34 @@
+<!-- views/register.handlebars -->
+<div class="row mt-5">
+  <div class="col-md-6 m-auto" style="border-style:outset;border-color:rgb(238, 235, 209)">
+    <div class="card card-body border-0">
+      <h1 class="text-center mb-3">Register</h1>
+      <form action="/users/register" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="name" id="name" name="name" class="form-control" placeholder="Enter Name" value="{{{name}}}" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email"
+            value="{{{email}}}" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Create Password"
+            value="{{{password}}}" />
+        </div>
+        <div class="form-group">
+          <label for="password2">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+            placeholder="Confirm Password" value="{{{confirmPassword}}}" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Register
+        </button>
+        <a href="/auth/facebook" class="btn btn-info btn-block">Facebook</a>
+      </form>
+      <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
+    </div>
+  </div>
+</div>
