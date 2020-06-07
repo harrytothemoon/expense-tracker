@@ -5,10 +5,12 @@ const router = express.Router()
 const home = require('./modules/home')
 const crud = require('./modules/crud')
 const filter = require('./modules/filter')
+const users = require('./modules/users')
 
 router.use('/', home)
 router.use('/record', crud)
 router.use('/filter', filter)
+router.use('/users', users)
 
 // 匯出路由器
 module.exports = router
