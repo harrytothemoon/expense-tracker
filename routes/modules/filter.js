@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     }
   ]).exec()
   const recordFilter = Money.aggregate([
-    { $match: { userId: userId } },
+    { $match: { userId: userId, category: filter } },
     {
       $project: {
         name: 1,
@@ -25,8 +25,7 @@ router.get('/', (req, res) => {
         date: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
         categoryIcon: 1,
       }
-    },
-    { $match: { category: filter } }
+    }
   ]).exec()
   if (filter) {
     Promise.all([amountFilter, recordFilter])
