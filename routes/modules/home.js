@@ -32,6 +32,7 @@ router.get('/', (req, res) => {
         name: 1,
         category: 1,
         amount: 1,
+        merchant: 1,
         date: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
         categoryIcon: 1,
       }

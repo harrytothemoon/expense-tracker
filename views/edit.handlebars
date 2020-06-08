@@ -33,7 +33,7 @@
     <div class="form-group input-group row mb-4">
       <label for="example-date-input" class="col-2 col-form-label mr-4">Date*</label>
       <div class="input-group-prepend">
-        <span class="input-group-text" style="width: 40px;"><i class=" far fa-calendar-alt"></i></span>
+        <span class="input-group-text" style="width: 45px;"><i class=" far fa-calendar-alt fa-lg"></i></span>
       </div>
       <input class="form-control col-5" type="date" id="example-date-input" style="cursor: pointer"
         value="{{recordEdit.date}}" name='date' required>
@@ -41,10 +41,18 @@
     <div class="form-group input-group row mb-4">
       <label for="example-number-input" class="col-2 col-form-label mr-4">Amount*</label>
       <div class="input-group-prepend">
-        <span class="input-group-text" style="width: 40px"><i class="fas fa-dollar-sign"></i></span>
+        <span class="input-group-text" style="width: 45px"><i class="fas fa-dollar-sign fa-lg ml-1"></i></span>
       </div>
       <input class=" form-control col-5" type="number" placeholder="100" id="example-number-input"
         value="{{recordEdit.amount}}" name="amount" required>
+    </div>
+    <div class="form-group input-group row mb-4">
+      <label for="example-merchant-input" class="col-2 col-form-label mr-4">Merchant*</label>
+      <div class="input-group-prepend">
+        <span class="input-group-text" style="width: 45px"><i class="fas fa-store-alt"></i></span>
+      </div>
+      <input class=" form-control col-5" type="text" placeholder="Merchant Name" id="example-merchant-input"
+        value="{{recordEdit.merchant}}" name="merchant" required>
     </div>
     <div class="text-center mt-4 row">
       <div class="col-5"></div>

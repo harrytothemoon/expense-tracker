@@ -21,6 +21,9 @@ const recordSchema = new Schema({
   categoryIcon: {
     type: String,
   },
+  merchant: {
+    type: String,
+  },
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',

@@ -10,9 +10,9 @@ router.get('/create', (req, res) => {
 })
 router.post('/create', (req, res) => {
   const userId = req.user._id
-  const { name, Category, date, amount } = req.body
+  const { name, Category, date, amount, merchant } = req.body
   let [category, categoryIcon] = Category.split('/')
-  return Money.create({ name, category, categoryIcon, date, amount, userId })
+  return Money.create({ name, category, categoryIcon, date, amount, merchant, userId })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -30,6 +30,7 @@ router.get('/:id/edit', (req, res) => {
         name: 1,
         category: 1,
         amount: 1,
+        merchant: 1,
         date: { $dateToString: { format: "%Y-%m-%d", date: "$date" } },
         categoryIcon: 1,
       }
@@ -44,7 +45,7 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id/edit', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
-  const { name, Category, date, amount } = req.body
+  const { name, Category, date, amount, merchant } = req.body
   let [category, categoryIcon] = Category.split('/')
   return Money.findOne({ _id, userId })
     .then(record => {
@@ -53,6 +54,7 @@ router.put('/:id/edit', (req, res) => {
       record.categoryIcon = categoryIcon
       record.date = date
       record.amount = amount
+      record.merchant = merchant
       return record.save()
     })
     .then(() => res.redirect("/"))
