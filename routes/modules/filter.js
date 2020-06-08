@@ -5,9 +5,10 @@ const Money = require('../../models/money')
 
 // Filter Function
 router.get('/', (req, res) => {
+  const userId = req.user._id
   const filter = req.query.filter
   const amountFilter = Money.aggregate([
-    { $match: { category: filter } }, {
+    { $match: { category: filter, userId: userId } }, {
       $group: {
         _id: null,
         amount: { $sum: "$amount" },
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
     }
   ]).exec()
   const recordFilter = Money.aggregate([
+    { $match: { userId: userId } },
     {
       $project: {
         name: 1,
