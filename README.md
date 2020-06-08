@@ -6,6 +6,10 @@
 
 ![Webpicture](/public/homepage.png)
 
+#### login Page (new 2020/6/9)
+
+![Webpicture](/public/loginpage.png)
+
 #### Edit Page
 
 ![Webpicture](/public/editpage.png)
@@ -18,6 +22,8 @@
 #### Filter Page
 
 ![Webpicture](/public/filterpage.png)
+
+![Webpicture](/public/filterpage2.png)
 
 ## Features
 * 連線資料庫功能
@@ -36,4 +42,9 @@
 * mongoose
 * method-override
 * CDN include Bootstrap, jQuery, Popper.js and fontawesome
+
+## 2020/06/09 Update
+＊ 新增登入驗證功能
+＊ 新增商家欄位
+＊ 新增月份篩選功能
 
